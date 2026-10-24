@@ -1,0 +1,553 @@
+/* ================= CSS VARIABLES / PALETTE ================= */
+:root {
+  --bg-cream: #FAF7F2;
+  --bg-card: #FFFFFF;
+  --text-main: #231F20;
+  --text-muted: #6B6565;
+  
+  /* Red / Burgundy accents */
+  --accent-red: #9B2226;
+  --accent-red-hover: #7E1B1E;
+  --accent-red-light: #FBF0F1;
+  --accent-border: #E8DCDD;
+  
+  /* Fonts */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================= INTRO OVERLAY ================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-cream);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  padding: 24px;
+}
+
+.overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.overlay-card {
+  text-align: center;
+  max-width: 380px;
+  background: var(--bg-card);
+  padding: 40px 28px;
+  border-radius: 20px;
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 10px 30px rgba(155, 34, 38, 0.05);
+}
+
+.flower-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.overlay-card h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.overlay-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+/* ================= LILY BLOOM ANIMATION ================= */
+.lily-bloom-wrapper {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 16px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lily-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Stem and leaves */
+.lily-stem {
+  fill: none;
+  stroke: #4F6D54;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawStem 1.2s ease forwards;
+}
+
+.lily-leaf {
+  fill: #608065;
+  opacity: 0;
+  transform-origin: 100px 150px;
+  animation: growLeaves 1s ease 0.8s forwards;
+}
+
+/* Petals */
+.lily-petal {
+  fill: #FAF7F2;
+  stroke: #9B2226; /* Deep crimson outline matching your red accent */
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform-origin: 100px 110px;
+}
+
+.petal-back-center {
+  animation: bloomCenter 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+}
+
+.petal-back-left, .petal-back-right {
+  animation: bloomSides 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+}
+
+.petal-front-left, .petal-front-right, .petal-front-center {
+  animation: bloomFront 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 1.6s forwards;
+}
+
+/* Center pollen points */
+.lily-stamen {
+  fill: #D90429;
+  opacity: 0;
+  animation: fadeInPollen 0.8s ease 2.2s forwards;
+}
+
+/* ================= KEYFRAME SEQUENCES ================= */
+@keyframes drawStem {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes growLeaves {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+}
+
+@keyframes bloomCenter {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes bloomSides {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(0deg);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes bloomFront {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInPollen {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================= BUTTONS ================= */
+.primary-btn {
+  background: var(--accent-red);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(155, 34, 38, 0.2);
+}
+
+.primary-btn:hover {
+  background: var(--accent-red-hover);
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: #eee;
+  color: var(--text-muted);
+  border: none;
+  padding: 14px 32px;
+  font-size: 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+/* ================= FLOATING AUDIO CONTROLLER ================= */
+.audio-control {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-border);
+  cursor: pointer;
+  z-index: 100;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.vinyl {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 25%, #222 26%);
+  border: 2px solid #222;
+}
+
+.vinyl.spinning {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ================= HERO SECTION ================= */
+.hero-section {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.drake-badge {
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 400;
+  max-width: 750px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.hero-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+.scroll-indicator {
+  margin-top: 50px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ================= CONTENT SECTIONS ================= */
+.section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.section-desc {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+/* ================= MEMORY CARDS ================= */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.memory-card {
+  background: var(--bg-card);
+  padding: 28px 24px;
+  border-radius: 16px;
+  border: 1px solid #ECE7E1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.memory-card.featured {
+  border-color: var(--accent-red);
+  background: #fff;
+}
+
+.card-tag {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.memory-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.memory-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.card-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--accent-red);
+  border-left: 2px solid var(--accent-red);
+  padding-left: 10px;
+}
+
+/* ================= SPOTIFY SECTION ================= */
+.music-card {
+  background: linear-gradient(135deg, #2A1114, #141112);
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.music-card h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin: 12px 0;
+}
+
+.music-card p {
+  color: #D1C7C7;
+  max-width: 520px;
+  margin: 0 auto 28px auto;
+  font-size: 0.95rem;
+}
+
+.pill-badge {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.spotify-btn {
+  display: inline-block;
+  background: #1DB954;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.spotify-btn:hover {
+  transform: scale(1.04);
+}
+
+/* ================= LETTER SECTION ================= */
+.letter-container {
+  position: relative;
+  max-width: 620px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--accent-red);
+  color: #fff;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(155, 34, 38, 0.4);
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+.wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.wax-seal.opened {
+  display: none;
+}
+
+.letter-paper {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.6s ease;
+}
+
+.letter-paper.unblurred {
+  filter: blur(0);
+  pointer-events: auto;
+  user-select: text;
+}
+
+.letter-salutation {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.letter-body {
+  font-size: 1rem;
+  color: #4A4444;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.letter-signoff {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+/* ================= PROPOSAL SECTION ================= */
+.proposal-section {
+  text-align: center;
+  padding-bottom: 120px;
+}
+
+.proposal-box {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-red);
+  border-radius: 24px;
+  padding: 60px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lily-leaf {
+  font-size: 2.5rem;
+}
+
+.proposal-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 16px 0 32px 0;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-height: 60px;
+}
+
+.celebration-message {
+  margin-top: 32px;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.celebration-message h3 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--accent-red);
+  margin-bottom: 8px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Little Something For You</title>
+  
+  <!-- Google Fonts: Elegant serif for romantic notes, clean sans for UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti Library for the celebration effect -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Audio Element: Browsers require user interaction before autoplaying -->
+  <audio id="bg-audio" loop preload="auto">
+    <!-- Replace 'music.mp3' with your audio file or URL -->
+    <source src="H.E.R. - Best Part (Lyrics) Ft. Daniel Caesar.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ================= OVERLAY SCREEN ================= -->
+  <!-- This guarantees audio will play cleanly upon first click -->
+  <div id="intro-overlay" class="overlay">
+    <div class="overlay-card">
+  <!-- Animated Lily Flower SVG -->
+  <div class="lily-bloom-wrapper">
+    <svg class="lily-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Stem -->
+      <path class="lily-stem" d="M100,190 Q95,140 100,110" />
+      <!-- Leaves -->
+      <path class="lily-leaf leaf-left" d="M98,150 Q70,140 60,120 Q80,125 98,140" />
+      <path class="lily-leaf leaf-right" d="M100,160 Q130,150 140,130 Q120,135 100,150" />
+      <!-- Outer Petals -->
+      <path class="lily-petal petal-back-left" d="M100,110 Q60,80 50,30 Q80,55 100,110" />
+      <path class="lily-petal petal-back-right" d="M100,110 Q140,80 150,30 Q120,55 100,110" />
+      <path class="lily-petal petal-back-center" d="M100,110 Q85,50 100,15 Q115,50 100,110" />
+      <!-- Front Petals -->
+      <path class="lily-petal petal-front-left" d="M100,110 Q45,115 35,90 Q70,85 100,110" />
+      <path class="lily-petal petal-front-right" d="M100,110 Q155,115 165,90 Q130,85 100,110" />
+      <path class="lily-petal petal-front-center" d="M100,110 Q80,125 100,145 Q120,125 100,110" />
+      <!-- Lily Stamens (Center Anthers) -->
+      <circle class="lily-stamen" cx="95" cy="85" r="2.5" />
+      <circle class="lily-stamen" cx="100" cy="80" r="2.5" />
+      <circle class="lily-stamen" cx="105" cy="85" r="2.5" />
+    </svg>
+  </div>
+
+  <h2>Hey you</h2>
+  <p>Put your headphones on for the full experience.</p>
+  <button id="enter-btn" class="primary-btn">Open <span>✨</span></button>
+</div>
+  </div>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main id="main-content" class="hidden">
+    
+    <!-- Floating Audio Control Widget -->
+    <div class="audio-control" id="audio-toggle" title="Play / Pause">
+      <div class="vinyl" id="vinyl-icon"></div>
+      <span id="audio-status">Playing Daniel Caesar...</span>
+    </div>
+
+    <!-- Section 1: Hero -->
+    <header class="hero-section">
+      <div class="drake-badge">
+        <span>"I'm outside in an AMG... just kidding, I'm 430 miles away."</span>
+      </div>
+      <h1 class="hero-title">Miles apart, but you'll always have a special place in my heart.</h1>
+      <p class="hero-subtitle">A little something I made just for you.</p>
+      <div class="scroll-indicator">↓ scroll down</div>
+    </header>
+
+    <!-- Section 2: Botanical / Memory Milestones -->
+    <section class="section memories-section">
+      <h2 class="section-title">I Miss You So Much</h2>
+      <p class="section-desc">There are so many little things that remind me of you</p>
+      
+      <div class="cards-grid">
+        <article class="memory-card">
+          <span class="card-tag">Music</span>
+          <h3>Daniel Caesar</h3>
+          <p>Whenever I really miss you, I play songs from the playlist of songs you've recommened to me. Songs especially from Daniel Caesar make me feel closer to you.</p>
+          <div class="card-quote">"If you love me, hold me down."</div>
+        </article>
+
+        <article class="memory-card featured">
+          <span class="card-tag">Traveling</span>
+          <h3>Toronto Trip</h3>
+          <p>I remember planning out our week in Toronto. Just the thought of being able to go somewhere with you, and seeing how excited you felt about it made me feel so happy.</p>
+          <div class="card-quote">"I would walk 500 miles, and I would walk 500 more..."</div>
+        </article>
+
+        <article class="memory-card">
+          <span class="card-tag">Favorite Things</span>
+          <h3>Lilies & plants</h3>
+          <p>I've pictured us going on walks, looking at all the flowers and plants that surround us. We would eventually find a bench, 
+            just like the one we sat on the night I came over for dinner.</p>
+          <div class="card-quote">"Superpowers you don't even know you have."</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: The Acrostic Spotify Playlist Card -->
+    <section class="section music-section">
+      <div class="music-card">
+        <div class="music-info">
+          <span class="pill-badge">A Curated Tracklist</span>
+          <h2>The Acrostic Playlist</h2>
+          <p>I put together a special tracklist for you. Take a close look at the <strong>first letter of each song title ;)</strong> from top to bottom...</p>
+          
+          <!-- Replace '#' with your actual Spotify Playlist link -->
+          <a href="https://open.spotify.com/playlist/6b5xMpBQFVaWfOVNEcTkqZ?si=7ff4bb5ea0b24e54" target="_blank" rel="noopener noreferrer" class="spotify-btn">
+            Open on Spotify ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: The Sealed Letter -->
+    <section class="section letter-section">
+      <h2 class="section-title">A Note For You</h2>
+      <div class="letter-container" id="letter-wrapper">
+        <div class="wax-seal" id="wax-seal" title="Click to open">
+          <span>Tap to Open</span>
+        </div>
+        <div class="letter-paper" id="letter-paper">
+          <p class="letter-salutation">Dear Sanjana,</p>
+          <p class="letter-body">
+            I know we're miles apart from eachother, but I just can't help myself from falling for youy. Every call we make, every night we stay up watching something together, and every voice note you send with 
+            your cute little laugh, just makes it more worth the wait. You make me feel so special without even trying. Whenever im stressed out about college, or
+            just life in general, you seem to always know how to take it all off of me.
+            <br><br>
+            I am so grateful for having such a beautiful girl in
+            my life who makes me feel seen for the things that others dont acknowledge.
+            <br><br>
+            I know it's hard to be so far apart from eachother, but knowing that it's you who I am waiting for is enough to keep going. From the day we started talking, we clicked instantly 
+            and not a day has gone by where I haven't thought about you or missed you. You truly are such an amazing, gorgeous, and smart girl, and I am such a lucky guy to
+            have met someone like you.
+            <br><br>
+            I appreciate all the small things you do that you might not even realize. Whenever you ask about my day or how practice went, how excited you get when I play the guitar for you, or even the updates throughout the day, 
+            they bring me so much joy and I am forever grateful for that.
+            <br><br>
+            I didn't just want to just send you a text or to tell you this over call. I wanted to make something that reminds you of how special you are to me.
+          </p>
+          <p class="letter-signoff">Yours,<br><strong>Chandul Handsome Somaweera</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: The Finale Prompt -->
+    <section class="section proposal-section">
+      <div class="proposal-box">
+        <span class="lily-leaf">🪷</span>
+        <h2 class="proposal-title">May I be your boyfriend??</h2>
+        
+        <div class="btn-group">
+          <button id="yes-btn" class="primary-btn yes-btn">Yes ❤️</button>
+          <button id="no-btn" class="secondary-btn no-btn">No</button>
+        </div>
+
+        <div id="celebration-message" class="celebration-message hidden">
+          <h3>Awh ❤️</h3>
+          <p>I can't wait to see you again ( and for our next call :&#41;  )</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
